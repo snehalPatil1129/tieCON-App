@@ -1,0 +1,41 @@
+{
+  "expo": {
+    "name": "TiE Pune Events",
+    "slug": "tieconpuneevents",
+    "sdkVersion": "24.0.0",
+    "icon": "./icon.png",
+    "orientation": "portrait",
+    "loading": {
+      "icon": "./icon_rounded.png"
+    },
+    "androidStatusBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#ed1b24"
+    },
+    "ios": {
+      "bundleIdentifier": "com.eternus.tieconpuneevents",
+      "buildNumber": "1.0.30",
+      "supportsTablet": true,
+      "infoPlist":{
+        "NSCameraUsageDescription":  "We use your camera to scan QR code printed on ID cards."
+      }
+    },
+    "android": {
+      "package": "com.eternus.tieconpuneevents",
+      "versionCode": 19
+    },
+    "version": "1.0.4",
+    "primaryColor": "#ed1b24",
+    "notification": {
+      "icon": "./notificationIcon.png",
+      "color": "#ed1b24"
+    },
+    "assetBundlePatterns": [
+      "app/assets/fonts/*",
+      "app/assets/icons/*",
+      "app/assets/images/*",
+      "app/data/img/avatars/*",
+      "app/data/img/*"
+    ]
+  }
+}

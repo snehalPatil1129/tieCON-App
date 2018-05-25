@@ -1,0 +1,52 @@
+{
+  "name": "TiECON",
+  "version": "1.0.9",
+  "private": true,
+  "author": "sagar shelar",
+  "scripts": {
+    "start": "react-native-scripts start",
+    "eject": "react-native-scripts eject",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@expo/vector-icons": "^6.3.1",
+    "expo": "24.0.2",
+    "expo-analytics": "1.0.6",
+    "firebase": "^4.10.1",
+    "hoist-non-react-statics": "2.3.1",
+    "lodash": "4.17.4",
+    "moment": "2.20.1",
+    "native-base": "^2.3.9",
+    "prop-types": "15.6.0",
+    "react": "16.0.0",
+    "react-moment": "^0.7.0",
+    "react-native": "0.51.0",
+    "react-native-autolink": "^1.4.0",
+    "react-native-calendars": "^1.17.6",
+    "react-native-google-maps-directions": "^2.0.0",
+    "react-native-keyboard-spacer": "0.4.1",
+    "react-native-linear-gradient": "2.4.0",
+    "react-native-linkedin": "^1.3.1",
+    "react-native-maps": "^0.21.0",
+    "react-native-progress-bar": "0.1.2",
+    "react-native-svg-charts": "^4.2.0",
+    "react-native-switch-pro": "0.4.6",
+    "react-native-ui-kitten": "3.0.0",
+    "react-navigation": "1.4.0",
+    "react-validation": "^3.0.7",
+    "victory-native": "0.15.0"
+  },
+  "devDependencies": {
+    "babel-jest": "19.0.0",
+    "babel-preset-react-native": "1.9.1",
+    "jest": "19.0.2",
+    "react-test-renderer": "16.0.0-alpha.6",
+    "react-native-scripts": "1.9.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  },
+  "main": "./app/app.js"
+}
