@@ -18,6 +18,7 @@ export class SessionDetails extends Component {
     super(props);
     this.styles = styleConstructor();
     this.sessionDetails = this.props.navigation.state.params.session,
+   
       this.state = {
         sessionDetails: this.props.navigation.state.params.session,
         speakerDetails: this.sessionDetails.speakersDetails ,
@@ -98,7 +99,7 @@ getCurrentUser() {
         user: userDetails.firstName + " " + userDetails.lastName,
         userObj: userDetails
       });
-      this.retrieveSpeakers();
+     // this.retrieveSpeakers();
       this.checkSurveyResponse();
       this.fetchRegistrationStatus();
     });
@@ -192,22 +193,23 @@ getCurrentUser() {
     return (<Text>{startTime} - {endTime} | {sessionDate} </Text>);
   }
   getSpeakers = () => {
-    if (this.state.speakerDetails) {
-      return this.state.speakerDetails
+    if (this.state.speakers) {
+      return this.state.speakers
         .map((speaker, index) => {
+
           let avatar;
-          if (speaker.profileImageURL) {
-            avatar = <Avatar rkType='small' style={{ width: 44, height: 44, borderRadius: 20 }} imagePath={speaker.profileImageURL} />
+          if (speaker.speakerData.profileImageURL) {
+            avatar = <Avatar rkType='small' style={{ width: 44, height: 44, borderRadius: 20 }} imagePath={speaker.speakerData.profileImageURL} />
           } else {
             avatar = <Image style={{ width: 44, height: 44, borderRadius: 20 }} source={require('../../../assets/images/defaultUserImg.png')} />
           }
           return (
-            <TouchableOpacity key={index} onPress={() => this.props.navigation.navigate('SpeakerDetailsTabs', { speakerDetails: speaker, speakersId: speaker.id })}>
+            <TouchableOpacity key={index} onPress={() => this.props.navigation.navigate('SpeakerDetailsTabs', { speakerDetails: speaker.speakerData, speakersId: speaker.id })}>
               <View style={[styles.row, styles.heading, styles.speakerView]} >
                 {avatar}
                 <View style={styles.column}>
-                  <RkText rkType='small'>{speaker.firstName + ' ' + speaker.lastName}</RkText>
-                  <Text style={[styles.text, styles.speaker]} rkType='header6'>{speaker.briefInfo}</Text>
+                  <RkText rkType='small'>{speaker.speakerData.firstName + ' ' + speaker.speakerData.lastName}</RkText>
+                  <Text style={[styles.text, styles.speaker]} rkType='header6'>{speaker.speakerData.briefInfo}</Text>
                 </View>
                 <RkText style={[styles.attendeeScreen]} ><Icon name="ios-arrow-forward" /></RkText>
               </View>
