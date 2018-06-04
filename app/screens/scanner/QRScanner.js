@@ -177,15 +177,15 @@ export class QRScanner extends React.Component {
     return session;
   }
 
-  _updateUserData(scannedData, userInfo) {
-      if (this.state.lastScannedResult != scannedData && !this.state.isLoading) {
+  _updateUserData(scannedName , scannedId, userInfo) {
+      if (this.state.lastScannedResult != scannedId && !this.state.isLoading){
         let selectedSession = this._getSelectedSession();
         let parsedUserInfo = userInfo.split("-");
         if(parsedUserInfo.length == 1) {
           parsedUserInfo.push('');
         }
-        this.setState({ isLoading: true, lastScannedResult: scannedData, lastScannedUserLabel: userInfo });
-        if (selectedSession.sessionType == 'deepdive' && parsedUserInfo[0] == 'DEL' && this.state.sessionUsers.indexOf(scannedData) == -1) {
+        this.setState({ isLoading: true, lastScannedResult: scannedId, lastScannedUserLabel: userInfo });
+        if (selectedSession.sessionType == 'deepdive' && parsedUserInfo[0] == 'DEL' && this.state.sessionUsers.indexOf(scannedId) == -1) {
           Alert.alert(
             'Unregistered User',
             'This user is not registered for this session. Do you still want to continue?',
@@ -193,12 +193,12 @@ export class QRScanner extends React.Component {
               {
                 text: 'Yes', onPress: () => {
                   firestoreDB.collection('Attendance').add({
-                    userId: scannedData,
+                    userId: scannedId,
                     userType: parsedUserInfo[0],
                     userLabel: userInfo,
                     sessionId: this.state.selectedSession,
                     session: selectedSession,
-                    userName: '',
+                    userName: scannedName,
                     userRole: '',
                     scannedBy: this.state.loggedInUser.uid,
                     timestamp: firebase.firestore.FieldValue.serverTimestamp()
@@ -230,12 +230,12 @@ export class QRScanner extends React.Component {
           );
         } else {
           firestoreDB.collection('Attendance').add({
-            userId: scannedData,
+            userId: scannedId,
             userType: parsedUserInfo[0],
             userLabel: userInfo,
             sessionId: this.state.selectedSession,
             session: selectedSession,
-            userName: '',
+            userName: scannedName,
             userRole: '',
             scannedBy: this.state.loggedInUser.uid,
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
@@ -264,8 +264,8 @@ export class QRScanner extends React.Component {
   _validateQRData(data) {
     if (data.startsWith('TIE:')) {
       let parsedData = data.split(":");
-      if(parsedData.length == 3){
-        this._updateUserData(parsedData[2], parsedData[1]);
+      if(parsedData.length == 4){
+        this._updateUserData(parsedData[3],parsedData[2], parsedData[1]);
       } else {
         this.setState({ isErrorDisplayed: true, isLoading: false });
         Alert.alert(

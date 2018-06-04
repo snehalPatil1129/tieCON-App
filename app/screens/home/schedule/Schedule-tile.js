@@ -49,7 +49,7 @@ export default class ScheduleTile extends RkComponent {
                 user: userObj
             });
         });
-        this.fetchSpeakers();
+       // this.fetchSpeakers();
         this.fetchRegistrationStatus();
     }
     /**

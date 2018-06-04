@@ -43,7 +43,7 @@ export class SpeakerSessionList extends RkComponent {
             let speakerArray = request.data().speakers;
             let i;
             for (i = 0; i < speakerArray.length; i++) {
-              if (speakerArray[i] == speakerId) {
+              if (speakerArray[i].id == speakerId) {
                 sessions.push({
                   key: id,
                   eventName: session.eventName,
