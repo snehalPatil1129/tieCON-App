@@ -75,22 +75,17 @@ export class Speakers extends RkComponent {
             this.handleFirstConnectivityChange
         );
     }
+
     getSpeakersList() {
         let thisRef = this;
         let speakerCollection = [];
-        firestoreDB.collection("Attendee").orderBy("firstName", "asc")
+        firestoreDB.collection("Speakers").orderBy("firstName", "asc")
             .get()
             .then(function (doc) {
                 doc.forEach(fItem => {
                     let itemData = fItem.data();
                     let itemId = fItem.id;
-                    if (itemData.profileServices != undefined) {
-                        itemData.profileServices.forEach(tItem => {
-                            if (tItem == 'Speaker') {
-                                speakerCollection.push({ speakerData: itemData, speakerId: itemId });
-                            }
-                        })
-                    }
+                    speakerCollection.push({ speakerData: itemData, speakerId: itemId });
                 })
                 thisRef.setState({
                     Speakers: speakerCollection,
@@ -132,6 +127,7 @@ export class Speakers extends RkComponent {
             )
         });
     }
+
     render() {
         let speakerList = this.displaySpeakers();
         if (this.state.isLoaded) {
